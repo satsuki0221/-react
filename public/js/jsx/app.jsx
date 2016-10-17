@@ -1,17 +1,34 @@
 import React from 'react'
 import ReactDOM from "react-dom"
 
-var Divider = React.createClass({
-    render : function(){
-        return(
-            <div className="divider">
-                <h2>{this.props.children}</h2>
-            </div>
-        )
+class Test extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = { count : 0 };
     }
-});
+
+    _onClick(){
+        var _count = this.state.count +1;
+        this.setState({ count : _count});
+    }
+
+    render(){
+        return (
+            <div>
+                こんにちは、{this.props.data.name}さん
+                <div>
+                    {this.state.count}
+                    <button onClick={this._onClick.bind(this)}>click</button>
+                </div>
+            </div>
+        );
+    }
+}
+
+var propsData = { name : 'Mineo Okuda'};
 
 ReactDOM.render(
-    <Divider>質問</Divider>,
+    <Test data={propsData} />,
     document.getElementById('container')
 );
